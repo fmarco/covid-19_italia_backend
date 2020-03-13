@@ -13,8 +13,10 @@ DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
 
 @app.get('/national_trend/')
 def national_trend(start_at: str = None, end_at: str = None):
-    start_at = pandas.to_datetime(f'{start_at} 18:00', format=DATE_FORMAT)
-    end_at = pandas.to_datetime(f'{end_at} 18:00', format=DATE_FORMAT)
+    if start_at is not None:
+        start_at = pandas.to_datetime(f'{start_at} 18:00', format=DATE_FORMAT)
+    if end_at is not None:
+        end_at = pandas.to_datetime(f'{end_at} 18:00', format=DATE_FORMAT)
     data_frame = pandas.read_csv(
         f'{BASE_URL}dati-andamento-nazionale/dpc-covid19-ita-andamento-nazionale.csv'
     )
@@ -35,9 +37,10 @@ def national_trend(start_at: str = None, end_at: str = None):
 
 @app.get('/region_trend/')
 def region_trend(region: str = None, start_at: str = None, end_at: str = None):
-    start_at = pandas.to_datetime(f'{start_at} 18:00', format=DATE_FORMAT)
-    end_at = pandas.to_datetime(f'{end_at} 18:00', format=DATE_FORMAT)
-    end_at = f'{end_at} 18:00'
+    if start_at is not None:
+        start_at = pandas.to_datetime(f'{start_at} 18:00', format=DATE_FORMAT)
+    if end_at is not None:
+        end_at = pandas.to_datetime(f'{end_at} 18:00', format=DATE_FORMAT)
     data_frame = pandas.read_csv(
         f'{BASE_URL}dati-regioni/dpc-covid19-ita-regioni.csv'
     )
@@ -60,8 +63,10 @@ def region_trend(region: str = None, start_at: str = None, end_at: str = None):
 
 @app.get('/province_trend/')
 def province_trend(region: str = None, province: str = None, start_at: str = None, end_at: str = None):
-    start_at = pandas.to_datetime(f'{start_at} 18:00', format=DATE_FORMAT)
-    end_at = pandas.to_datetime(f'{end_at} 18:00', format=DATE_FORMAT)
+    if start_at is not None:
+        start_at = pandas.to_datetime(f'{start_at} 18:00', format=DATE_FORMAT)
+    if end_at is not None:
+        end_at = pandas.to_datetime(f'{end_at} 18:00', format=DATE_FORMAT)
     data_frame = pandas.read_csv(
         f'{BASE_URL}dati-province/dpc-covid19-ita-province.csv'
     )
